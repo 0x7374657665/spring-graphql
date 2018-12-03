@@ -1,0 +1,24 @@
+applicatr
+	applier
+	user
+	submitter
+stripmetrics
+	stripper
+	metrician
+	admin
+tecoder
+	technician
+	coder
+	readonly
+flexra
+	flexer
+	trammeler
+	admin
+htools
+	hyperbolist
+	tooler
+	user
+netvpx
+	vpx
+	user
+	admin
