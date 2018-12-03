@@ -1,5 +1,5 @@
 insert into role (id, name, display_name, description, approvers, is_deleted, is_requestable, created, updated)
-values (301, 'applicatrAprvs', 'Applic 8R Approvers', 'Approvers for Applic 8R', 301, false, true, current_timestamp(), current_timestamp()),
+values (301, 'applicatrPrv', 'Applic 8R Provisioners', 'Provisioners for Applic 8R', 301, false, true, current_timestamp(), current_timestamp()),
        (302, 'applicatrUser', 'Applic 8R User', 'Standard User for Applic 8R', 301, false, true, current_timestamp(), current_timestamp());
 
 insert into application ( id, name, display_name, description, provisioners, is_deleted, created, updated )
