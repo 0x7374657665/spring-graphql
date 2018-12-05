@@ -1,41 +1,41 @@
 type Application {
-  id: ID!
-  name: String
-  displayName: String
-  description: String
-  provisioners: Role
-  isDeleted: Boolean
-  created: String
-  updated: String
-  entitlements: [Entitlement]
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    provisioners: Role
+    isDeleted: Boolean
+    created: String
+    updated: String
+    entitlements: [Entitlement]
 }
 
 type Entitlement {
-  id: ID!
-  name: String
-  displayName: String
-  description: String
-  businessUnit: String
-  complianceType: String
-  parentApplication: Application
-  isDeleted: Boolean
-  created: String
-  updated: String
-  roles: [Role]
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    businessUnit: String
+    complianceType: String
+    parentApplication: Application
+    isDeleted: Boolean
+    created: String
+    updated: String
+    roles: [Role]
 }
 
 type Role {
-  id: ID!
-  name: String
-  displayName: String
-  description: String
-  approvers: Role
-  isDeleted: Boolean
-  isRequestable: Boolean
-  created: String
-  updated: String
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    approvers: Role
+    isDeleted: Boolean
+    isRequestable: Boolean
+    created: String
+    updated: String
 }
 
-Query {
-  application(name: String!): Application
+type Query {
+    application(name: String!): Application
 }
