@@ -3,7 +3,7 @@ create table if not exists application (
   name varchar(100) not null,
   display_name varchar(100) not null,
   description varchar(100),
-  provisioners bigint,
+  provisioner_role_key bigint,
   is_deleted boolean,
   created timestamp,
   updated timestamp
@@ -35,7 +35,7 @@ create table if not exists role (
   );
 
 alter table application
-  add foreign key (provisioners) references role(id);
+  add foreign key (provisioner_role_key) references role(id);
 
 alter table entitlement
   add foreign key (parent_application) references application(id);

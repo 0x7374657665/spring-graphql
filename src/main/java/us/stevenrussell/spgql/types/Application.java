@@ -7,7 +7,7 @@ public class Application {
     private String name;
     private String displayName;
     private String description;
-    private Role provisioners;
+    private long provisioner_role_key;
     private boolean isDeleted;
     private String created;
     private String updated;
@@ -45,12 +45,12 @@ public class Application {
         this.description = description;
     }
 
-    public Role getProvisioners() {
-        return provisioners;
+    public long getProvisioner_role_key() {
+        return provisioner_role_key;
     }
 
-    public void setProvisioners(Role provisioners) {
-        this.provisioners = provisioners;
+    public void setProvisioner_role_key(long provisioner_role_key) {
+        this.provisioner_role_key = provisioner_role_key;
     }
 
     public boolean isDeleted() {
