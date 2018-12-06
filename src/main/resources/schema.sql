@@ -3,7 +3,7 @@ create table if not exists application (
   name varchar(100) not null,
   display_name varchar(100) not null,
   description varchar(100),
-  provisioner_role_key bigint,
+  provisioner_role_id bigint,
   is_deleted boolean,
   created timestamp,
   updated timestamp
@@ -16,7 +16,7 @@ create table if not exists entitlement (
   description varchar(100),
   business_unit varchar(100) not null,
   compliance_type varchar(100) not null,
-  parent_application bigint not null,
+  parent_application_id bigint not null,
   is_deleted boolean,
   created timestamp,
   updated timestamp
@@ -27,7 +27,6 @@ create table if not exists role (
   name varchar(100) not null,
   display_name varchar(100) not null,
   description varchar(100),
-  approvers bigint,
   is_deleted boolean,
   is_requestable boolean,
   created timestamp,
@@ -35,10 +34,10 @@ create table if not exists role (
   );
 
 alter table application
-  add foreign key (provisioner_role_key) references role(id);
+  add foreign key (provisioner_role_id) references role(id);
 
 alter table entitlement
-  add foreign key (parent_application) references application(id);
+  add foreign key (parent_application_id) references application(id);
 
 create table if not exists policy (
   id bigint not null,

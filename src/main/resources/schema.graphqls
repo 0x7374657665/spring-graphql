@@ -3,17 +3,42 @@ type Application {
     name: String
     displayName: String
     description: String
+    provisionerRole: Role
     isDeleted: Boolean
+    created: String
+    updated: String
     entitlements: [Entitlement]
 }
 
 type Entitlement {
     id: ID!
     name: String
-    application: Application
+    displayName: String
+    description: String
+    businessUnit: String
+    complianceType: String
+    parentApplication: Application
+    isDeleted: Boolean
+    created: String
+    updated: String
+    parentApplication: Application
+}
+
+type Role {
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    isDeleted: Boolean
+    isRequestable: Boolean
+    created: String
+    updated: String
 }
 
 type Query {
     application(name: String): Application
     applications: [Application]
+
+    entitlement(name: String): Entitlement
+    entitlements: [Entitlement]
 }

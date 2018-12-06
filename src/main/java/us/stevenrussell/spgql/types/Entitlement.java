@@ -1,10 +1,18 @@
 package us.stevenrussell.spgql.types;
 
+import java.util.Objects;
+
 public class Entitlement {
     private long id;
     private String name;
     private String displayName;
-    private Application application;
+    private String description;
+    private String businessUnit;
+    private String complianceType;
+    private Application parentApplication;
+    private boolean isDeleted;
+    private String created;
+    private String updated;
 
     public long getId() {
         return id;
@@ -30,11 +38,81 @@ public class Entitlement {
         this.displayName = displayName;
     }
 
-    public Application getApplication() {
-        return application;
+    public String getDescription() {
+        return description;
     }
 
-    public void setApplication(Application application) {
-        this.application = application;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getBusinessUnit() {
+        return businessUnit;
+    }
+
+    public void setBusinessUnit(String businessUnit) {
+        this.businessUnit = businessUnit;
+    }
+
+    public String getComplianceType() {
+        return complianceType;
+    }
+
+    public void setComplianceType(String complianceType) {
+        this.complianceType = complianceType;
+    }
+
+    public Application getParentApplication() {
+        return parentApplication;
+    }
+
+    public void setParentApplication(Application parentApplication) {
+        this.parentApplication = parentApplication;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(String updated) {
+        this.updated = updated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entitlement that = (Entitlement) o;
+        return id == that.id &&
+                isDeleted == that.isDeleted &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(displayName, that.displayName) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(businessUnit, that.businessUnit) &&
+                Objects.equals(complianceType, that.complianceType) &&
+                Objects.equals(parentApplication, that.parentApplication) &&
+                Objects.equals(created, that.created) &&
+                Objects.equals(updated, that.updated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, displayName, description, businessUnit, complianceType, parentApplication, isDeleted, created, updated);
     }
 }
