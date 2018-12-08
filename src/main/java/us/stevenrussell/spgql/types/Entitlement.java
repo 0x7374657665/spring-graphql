@@ -9,7 +9,7 @@ public class Entitlement {
     private String description;
     private String businessUnit;
     private boolean restricted;
-    private Application parentApplication;
+    private long parentApplicationId;
     private boolean isDeleted;
     private String created;
     private String updated;
@@ -62,12 +62,12 @@ public class Entitlement {
         this.restricted = restricted;
     }
 
-    public Application getParentApplication() {
-        return parentApplication;
+    public long getParentApplicationId() {
+        return parentApplicationId;
     }
 
-    public void setParentApplication(Application parentApplication) {
-        this.parentApplication = parentApplication;
+    public void setParentApplicationId(long parentApplicationId) {
+        this.parentApplicationId = parentApplicationId;
     }
 
     public boolean isDeleted() {

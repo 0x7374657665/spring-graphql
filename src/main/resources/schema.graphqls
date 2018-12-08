@@ -21,7 +21,6 @@ type Entitlement {
     isDeleted: Boolean
     created: String
     updated: String
-    parentApplication: Application
 }
 
 type Role {
