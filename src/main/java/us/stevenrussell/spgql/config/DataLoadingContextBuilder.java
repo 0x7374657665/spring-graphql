@@ -6,13 +6,15 @@ import org.dataloader.DataLoader;
 import org.dataloader.DataLoaderRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import us.stevenrussell.spgql.repositories.EntitlementRepository;
 import us.stevenrussell.spgql.repositories.RoleRepository;
-import us.stevenrussell.spgql.types.Role;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Component
@@ -20,6 +22,9 @@ public class DataLoadingContextBuilder implements GraphQLContextBuilder {
 
     @Autowired
     private RoleRepository roleRepo;
+
+    @Autowired
+    private EntitlementRepository entitlementRepo;
 
     @Override
     public GraphQLContext build(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
@@ -48,9 +53,18 @@ public class DataLoadingContextBuilder implements GraphQLContextBuilder {
 
         dlRegistry.register(
                 "provisionersForApplicationsDataLoader",
-                new DataLoader<Long, Role>(
-                        applicationIds -> CompletableFuture.supplyAsync(
+                DataLoader.newDataLoader(
+                        (List<Long> applicationIds) -> CompletableFuture.supplyAsync(
                                 () -> roleRepo.getRolesForApplicationIds(applicationIds)
+                        )
+                )
+        );
+
+        dlRegistry.register(
+                "entitlementsByApplicationDataLoader",
+                DataLoader.newMappedDataLoader(
+                        (Set<Long> applicationIds) -> CompletableFuture.supplyAsync(
+                                () -> entitlementRepo.getEntitlementsForApplicationIds(applicationIds)
                         )
                 )
         );

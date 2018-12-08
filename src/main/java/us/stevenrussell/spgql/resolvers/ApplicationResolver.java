@@ -28,10 +28,6 @@ public class ApplicationResolver implements GraphQLResolver<Application> {
     private static final BeanPropertyRowMapper ROLE_MAPPER = new BeanPropertyRowMapper(Role.class);
     private static final BeanPropertyRowMapper ENTITLEMENT_MAPPER = new BeanPropertyRowMapper(Entitlement.class);
 
-//    public Role getProvisionerRole(Application application) {
-//        return roleRepo.getProvisionerRoleForApplication(application);
-//    }
-
     public CompletableFuture<Role> getProvisionerRole(Application application, DataFetchingEnvironment dfe) {
         DataLoader<Long, Role> provisionersForApplicationsDataLoader = ((GraphQLContext) dfe.getContext())
                 .getDataLoaderRegistry()
@@ -43,9 +39,14 @@ public class ApplicationResolver implements GraphQLResolver<Application> {
         return roleCF;
     }
 
-    public List<Entitlement> getEntitlements(Application application) {
-        String query = "select * from entitlement e where e.parent_application_id = ?";
-        List<Entitlement> entitlements = jdbc.query(query, ENTITLEMENT_MAPPER, application.getId());
-        return entitlements;
+    public CompletableFuture<List<Entitlement>> getEntitlements(Application application, DataFetchingEnvironment dfe) {
+        DataLoader<Long, List<Entitlement>> entitlementsByApplicationDataLoader = ((GraphQLContext) dfe.getContext())
+                .getDataLoaderRegistry()
+                .get()
+                .getDataLoader("entitlementsByApplicationDataLoader");
+
+        CompletableFuture<List<Entitlement>> entitlementsCF = entitlementsByApplicationDataLoader.load(application.getId());
+
+        return entitlementsCF;
     }
 }
