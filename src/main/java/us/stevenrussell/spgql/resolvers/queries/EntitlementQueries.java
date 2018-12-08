@@ -22,7 +22,7 @@ public class EntitlementQueries implements GraphQLQueryResolver {
     }
 
     public Entitlement entitlement(String name) {
-        return (Entitlement) jdbc.queryForObject("select * from entitlement where name = ?", new String[]{name}, ENT_MAPPER);
+        return (Entitlement) jdbc.queryForObject("select * from entitlement where name = ?", ENT_MAPPER, name);
     }
 
     public List<Entitlement> entitlements() {
