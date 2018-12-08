@@ -1,4 +1,4 @@
-package us.stevenrussell.spgql.resolvers;
+package us.stevenrussell.spgql.resolvers.queries;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;

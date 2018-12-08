@@ -1,6 +1,7 @@
 package us.stevenrussell.spgql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLResolver;
+import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,18 +10,20 @@ import us.stevenrussell.spgql.types.Application;
 import us.stevenrussell.spgql.types.Role;
 
 @Component
-public class RoleResolver implements GraphQLResolver<Role> {
+public class ApplicationResolver implements GraphQLResolver<Application> {
 
     private JdbcTemplate jdbc;
 
     private static final BeanPropertyRowMapper ROLE_MAPPER = new BeanPropertyRowMapper(Role.class);
 
     @Autowired
-    public RoleResolver(JdbcTemplate jdbc) {
+    public ApplicationResolver(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
 
-    public Role provisionerRole(Application application) {
+    public Role getProvisionerRole(Application application, DataFetchingEnvironment dfe) {
+
+        DataFetchingEnvironment dfe1 = dfe;
 
         String query = new StringBuilder()
                 .append(" select r.* from application a, role r ")
