@@ -8,7 +8,7 @@ public class Entitlement {
     private String displayName;
     private String description;
     private String businessUnit;
-    private String complianceType;
+    private boolean restricted;
     private Application parentApplication;
     private boolean isDeleted;
     private String created;
@@ -54,12 +54,12 @@ public class Entitlement {
         this.businessUnit = businessUnit;
     }
 
-    public String getComplianceType() {
-        return complianceType;
+    public boolean isRestricted() {
+        return restricted;
     }
 
-    public void setComplianceType(String complianceType) {
-        this.complianceType = complianceType;
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
     }
 
     public Application getParentApplication() {
@@ -92,27 +92,5 @@ public class Entitlement {
 
     public void setUpdated(String updated) {
         this.updated = updated;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Entitlement that = (Entitlement) o;
-        return id == that.id &&
-                isDeleted == that.isDeleted &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(displayName, that.displayName) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(businessUnit, that.businessUnit) &&
-                Objects.equals(complianceType, that.complianceType) &&
-                Objects.equals(parentApplication, that.parentApplication) &&
-                Objects.equals(created, that.created) &&
-                Objects.equals(updated, that.updated);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, displayName, description, businessUnit, complianceType, parentApplication, isDeleted, created, updated);
     }
 }

@@ -16,7 +16,7 @@ type Entitlement {
     displayName: String
     description: String
     businessUnit: String
-    complianceType: String
+    restricted: Boolean
     parentApplication: Application
     isDeleted: Boolean
     created: String
