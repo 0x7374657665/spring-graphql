@@ -22,16 +22,6 @@ public class RoleRepository {
         this.jdbc = jdbc;
     }
 
-//    public Role getProvisionerRoleForApplication(Application application) {
-//        String query = new StringBuilder()
-//                .append(" select r.* from application a, role r ")
-//                .append(" where a.provisioner_role_id = r.id    ")
-//                .append(" and a.name = ?                        ")
-//                .toString();
-//
-//        return (Role) jdbc.queryForObject(query, new String[]{application.getName()}, ROLE_MAPPER);
-//    }
-
     public List<Role> getRolesForApplicationIds(List<Long> applicationIds) {
         String query = new StringBuilder()
                 .append("select * from application a, role r  ")
