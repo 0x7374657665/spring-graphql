@@ -46,8 +46,6 @@ type Query {
     application(name: String): Application
     applications: [Application]
 
-
-    entitlement(name: String): Entitlement
     entitlements: [Entitlement]
 
     updatedSince(since: MDYDate!): [Chronological]

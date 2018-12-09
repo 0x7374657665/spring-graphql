@@ -43,4 +43,8 @@ public class EntitlementRepository {
 
         return entsByAppId;
     }
+
+    public List<Entitlement> getAllEntitlements() {
+        return jdbc.query("select * from entitlement", ENTITLEMENT_MAPPER);
+    }
 }

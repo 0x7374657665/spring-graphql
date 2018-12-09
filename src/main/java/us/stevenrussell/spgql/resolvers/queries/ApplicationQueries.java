@@ -1,6 +1,7 @@
 package us.stevenrussell.spgql.resolvers.queries;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.stevenrussell.spgql.repositories.ApplicationRepository;
@@ -25,7 +26,7 @@ public class ApplicationQueries implements GraphQLQueryResolver {
 
     }
 
-    public List<Application> applications() {
+    public List<Application> applications(DataFetchingEnvironment dfe) {
         return appRepo.getAllApplications();
     }
 
