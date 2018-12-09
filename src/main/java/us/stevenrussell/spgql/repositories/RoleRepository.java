@@ -2,6 +2,7 @@ package us.stevenrussell.spgql.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Repository;
 import us.stevenrussell.spgql.types.Role;
 
@@ -20,6 +21,7 @@ public class RoleRepository {
         this.jdbc = jdbc;
     }
 
+    @Secured("ROLE_ADMIN")
     public List<Role> getRolesForApplicationIds(List<Long> applicationIds) {
         String query = new StringBuilder()
                 .append("select * from application a, role r  ")
