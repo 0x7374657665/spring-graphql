@@ -17,13 +17,17 @@ import static us.stevenrussell.spgql.repositories.TypeMappers.ENTITLEMENT_MAPPER
 public class EntitlementRepository {
 
     private JdbcTemplate jdbc;
+    private AuthorizationService authSvc;
 
     @Autowired
-    public EntitlementRepository(JdbcTemplate jdbc) {
+    public EntitlementRepository(JdbcTemplate jdbc, AuthorizationService authSvc) {
         this.jdbc = jdbc;
+        this.authSvc = authSvc;
     }
 
     public Map<Long, List<Entitlement>> getEntitlementsForApplicationIds(Set<Long> applicationIds) {
+
+        List<String> roles = authSvc.getRoles();
 
         String query = new StringBuilder()
                 .append("select * from entitlement e where e.parent_application_id  in ( ")
@@ -45,6 +49,9 @@ public class EntitlementRepository {
     }
 
     public List<Entitlement> getAllEntitlements() {
-        return jdbc.query("select * from entitlement", ENTITLEMENT_MAPPER);
+        List<String> roles = authSvc.getRoles();
+        boolean isAdmin = roles.contains("ROLE_ADMIN");
+
+        return jdbc.query("select * from entitlement e" + (isAdmin ? "" : " where e.restricted=false"), ENTITLEMENT_MAPPER);
     }
 }
