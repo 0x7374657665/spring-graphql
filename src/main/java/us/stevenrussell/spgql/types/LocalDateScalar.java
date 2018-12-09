@@ -15,7 +15,7 @@ public class LocalDateScalar extends GraphQLScalarType {
     private static final DateTimeFormatter PATTERN = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 
     LocalDateScalar() {
-        super("LocalDate", "String representing date in dd-mm-yyyy format", new Coercing<LocalDate, String>() {
+        super("MDYDate", "String representing date in MM-dd-yyyy format", new Coercing<LocalDate, String>() {
             @Override
             public String serialize(Object o) throws CoercingSerializeException {
                 if (o instanceof LocalDate) {

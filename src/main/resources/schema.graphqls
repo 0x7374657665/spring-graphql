@@ -1,4 +1,4 @@
-scalar LocalDate
+scalar MDYDate
 
 type Application {
     id: ID!
@@ -7,8 +7,8 @@ type Application {
     description: String
     provisionerRole: Role
     isDeleted: Boolean
-    created: LocalDate
-    updated: LocalDate
+    created: MDYDate
+    updated: MDYDate
     entitlements: [Entitlement]
 }
 
@@ -39,6 +39,7 @@ type Role {
 type Query {
     application(name: String): Application
     applications: [Application]
+    applicationsUpdatedSince(since: MDYDate!): [Application]
 
     entitlement(name: String): Entitlement
     entitlements: [Entitlement]
