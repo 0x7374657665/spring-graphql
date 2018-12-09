@@ -1,8 +1,8 @@
 package us.stevenrussell.spgql.types;
 
-import java.util.Objects;
+import java.time.LocalDate;
 
-public class Entitlement {
+public class Entitlement implements Chronological {
     private long id;
     private String name;
     private String displayName;
@@ -11,8 +11,8 @@ public class Entitlement {
     private boolean restricted;
     private long parentApplicationId;
     private boolean isDeleted;
-    private String created;
-    private String updated;
+    private LocalDate created;
+    private LocalDate updated;
 
     public long getId() {
         return id;
@@ -78,19 +78,19 @@ public class Entitlement {
         isDeleted = deleted;
     }
 
-    public String getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
-    public String getUpdated() {
+    public LocalDate getUpdated() {
         return updated;
     }
 
-    public void setUpdated(String updated) {
+    public void setUpdated(LocalDate updated) {
         this.updated = updated;
     }
 }

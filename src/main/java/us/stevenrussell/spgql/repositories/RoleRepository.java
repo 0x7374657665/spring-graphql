@@ -1,7 +1,6 @@
 package us.stevenrussell.spgql.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import us.stevenrussell.spgql.types.Role;
@@ -9,13 +8,12 @@ import us.stevenrussell.spgql.types.Role;
 import java.util.Collections;
 import java.util.List;
 
+import static us.stevenrussell.spgql.repositories.TypeMappers.ROLE_MAPPER;
+
 @Repository
 public class RoleRepository {
 
     private JdbcTemplate jdbc;
-
-    private static final BeanPropertyRowMapper ROLE_MAPPER = new BeanPropertyRowMapper(Role.class);
-
 
     @Autowired
     public RoleRepository(JdbcTemplate jdbc) {

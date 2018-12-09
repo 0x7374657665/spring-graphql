@@ -3,7 +3,7 @@ package us.stevenrussell.spgql.types;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Application {
+public class Application implements Chronological {
     private long id;
     private String name;
     private String displayName;

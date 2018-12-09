@@ -1,7 +1,6 @@
 package us.stevenrussell.spgql.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import us.stevenrussell.spgql.types.Entitlement;
@@ -12,12 +11,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static us.stevenrussell.spgql.repositories.TypeMappers.ENTITLEMENT_MAPPER;
+
 @Repository
 public class EntitlementRepository {
 
     private JdbcTemplate jdbc;
-
-    private static final BeanPropertyRowMapper ENTITLEMENT_MAPPER = new BeanPropertyRowMapper(Entitlement.class);
 
     @Autowired
     public EntitlementRepository(JdbcTemplate jdbc) {
