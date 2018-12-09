@@ -17,7 +17,6 @@ public class EntitlementResolver implements GraphQLResolver<Entitlement> {
         this.appRepo = appRepo;
     }
 
-
     public Application getParentApplication(Entitlement entitlement) {
         return appRepo.getApplicationForEntitlement(entitlement);
     }
