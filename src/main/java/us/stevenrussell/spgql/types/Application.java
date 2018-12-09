@@ -1,5 +1,6 @@
 package us.stevenrussell.spgql.types;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
@@ -9,8 +10,8 @@ public class Application {
     private String description;
     private Role provisionerRole;
     private boolean isDeleted;
-    private String created;
-    private String updated;
+    private LocalDate created;
+    private LocalDate updated;
     private List<Entitlement> entitlements;
 
     public long getId() {
@@ -61,19 +62,19 @@ public class Application {
         isDeleted = deleted;
     }
 
-    public String getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
-    public String getUpdated() {
+    public LocalDate getUpdated() {
         return updated;
     }
 
-    public void setUpdated(String updated) {
+    public void setUpdated(LocalDate updated) {
         this.updated = updated;
     }
 
