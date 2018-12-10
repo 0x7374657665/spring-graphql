@@ -1,17 +1,16 @@
 package us.stevenrussell.spgql.types;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public class Application implements Chronological {
+public class Application {
     private long id;
     private String name;
     private String displayName;
     private String description;
     private Role provisionerRole;
     private boolean isDeleted;
-    private LocalDate created;
-    private LocalDate updated;
+    private String created;
+    private String updated;
     private List<Entitlement> entitlements;
 
     public long getId() {
@@ -62,19 +61,19 @@ public class Application implements Chronological {
         isDeleted = deleted;
     }
 
-    public LocalDate getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public LocalDate getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDate updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 

@@ -2,12 +2,8 @@ package us.stevenrussell.spgql.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Repository;
 import us.stevenrussell.spgql.types.Role;
-
-import java.util.Collections;
-import java.util.List;
 
 import static us.stevenrussell.spgql.repositories.TypeMappers.ROLE_MAPPER;
 
@@ -21,18 +17,16 @@ public class RoleRepository {
         this.jdbc = jdbc;
     }
 
-    @Secured("ROLE_ADMIN")
-    public List<Role> getRolesForApplicationIds(List<Long> applicationIds) {
+    public Role getProvisionerRoleForApp(String appName) {
         String query = new StringBuilder()
-                .append("select * from application a, role r  ")
-                .append(" where a.provisioner_role_id = r.id  ")
-                .append("   and a.id in (                     ")
-                .append(String.join(", ", Collections.nCopies(applicationIds.size(), "?")))
-                .append(" )")
+                .append("select r.* from application a, role r ")
+                .append(" where a.provisioner_role_id = r.id   ")
+                .append("   and a.name = ?                     ")
                 .toString();
 
-        List<Role> roles = jdbc.query(query, ROLE_MAPPER, applicationIds.toArray());
-
-        return roles;
+        Role role = (Role) jdbc.queryForObject(query, ROLE_MAPPER, appName);
+        return role;
     }
+
+
 }

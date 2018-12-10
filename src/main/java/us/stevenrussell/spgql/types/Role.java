@@ -2,7 +2,7 @@ package us.stevenrussell.spgql.types;
 
 import java.time.LocalDate;
 
-public class Role implements Chronological {
+public class Role {
 
     private long id;
     private String name;
@@ -10,8 +10,8 @@ public class Role implements Chronological {
     private String description;
     private boolean isDeleted;
     private boolean isRequestable;
-    private LocalDate created;
-    private LocalDate updated;
+    private String created;
+    private String updated;
 
     public long getId() {
         return id;
@@ -61,19 +61,19 @@ public class Role implements Chronological {
         isRequestable = requestable;
     }
 
-    public LocalDate getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public LocalDate getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDate updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 }

@@ -2,7 +2,7 @@ package us.stevenrussell.spgql.types;
 
 import java.time.LocalDate;
 
-public class Entitlement implements Chronological {
+public class Entitlement {
     private long id;
     private String name;
     private String displayName;
@@ -10,8 +10,8 @@ public class Entitlement implements Chronological {
     private boolean restricted;
     private long parentApplicationId;
     private boolean isDeleted;
-    private LocalDate created;
-    private LocalDate updated;
+    private String created;
+    private String updated;
 
     public long getId() {
         return id;
@@ -69,19 +69,19 @@ public class Entitlement implements Chronological {
         isDeleted = deleted;
     }
 
-    public LocalDate getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public LocalDate getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDate updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 }
