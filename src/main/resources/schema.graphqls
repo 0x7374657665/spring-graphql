@@ -50,3 +50,14 @@ type Query {
 
     updatedSince(since: MDYDate!): [Chronological]
 }
+
+type Mutation {
+    createEntitlement(input: CreateEntitlementInput): Entitlement!
+}
+
+input CreateEntitlementInput {
+    name: String!
+    displayName: String!
+    description: String!
+    parentAppName: String!
+}

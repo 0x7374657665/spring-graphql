@@ -27,7 +27,7 @@ public class ApplicationRepository {
     }
 
     public Application getApplicationByName(String name) {
-        return (Application) jdbc.queryForObject("select * from application where name = ?", new String[]{name}, APPLICATION_MAPPER);
+        return (Application) jdbc.queryForObject("select * from application where name = ?", APPLICATION_MAPPER, name);
     }
 
     public List<Application> getAllApplications() {
