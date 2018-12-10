@@ -14,7 +14,6 @@ create table if not exists entitlement (
   name varchar(100) not null,
   display_name varchar(100) not null,
   description varchar(100),
-  business_unit varchar(100),
   restricted boolean not null,
   parent_application_id bigint not null,
   is_deleted boolean,

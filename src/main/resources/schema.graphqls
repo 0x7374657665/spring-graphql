@@ -23,7 +23,6 @@ type Entitlement implements Chronological {
     name: String
     displayName: String
     description: String
-    businessUnit: String
     restricted: Boolean
     parentApplication: Application
     isDeleted: Boolean
@@ -52,10 +51,12 @@ type Query {
 }
 
 type Mutation {
-    createEntitlement(input: CreateEntitlementInput): Entitlement!
+    createEntitlement(newEntitlement: EntitlementDisplayInput!): Entitlement!
+    updateEntitlement(entitlementUpdates: EntitlementDisplayInput!): Entitlement!
+    deleteEntitlement(parentAppName: String!, entitlementName: String!): Entitlement!
 }
 
-input CreateEntitlementInput {
+input EntitlementDisplayInput {
     name: String!
     displayName: String!
     description: String!

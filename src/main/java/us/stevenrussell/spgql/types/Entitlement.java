@@ -7,7 +7,6 @@ public class Entitlement implements Chronological {
     private String name;
     private String displayName;
     private String description;
-    private String businessUnit;
     private boolean restricted;
     private long parentApplicationId;
     private boolean isDeleted;
@@ -44,14 +43,6 @@ public class Entitlement implements Chronological {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getBusinessUnit() {
-        return businessUnit;
-    }
-
-    public void setBusinessUnit(String businessUnit) {
-        this.businessUnit = businessUnit;
     }
 
     public boolean isRestricted() {

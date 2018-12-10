@@ -1,10 +1,11 @@
 package us.stevenrussell.spgql.types;
 
-public class CreateEntitlementInput {
+public class EntitlementDisplayInput {
     private String name;
     private String displayName;
     private String description;
     private String parentAppName;
+    private boolean restricted;
 
     public String getName() {
         return name;
@@ -36,5 +37,13 @@ public class CreateEntitlementInput {
 
     public void setParentAppName(String parentAppName) {
         this.parentAppName = parentAppName;
+    }
+
+    public boolean isRestricted() {
+        return restricted;
+    }
+
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
     }
 }

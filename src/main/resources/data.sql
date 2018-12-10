@@ -27,30 +27,30 @@ values (101, 'applicatr', 'Applic 8R', 'Manages the applying of things', 301, fa
        (150, 'netvpx', 'Net Virtual Primary Transfer', 'Primary source for virtual transfers', 350, false, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
 
 --Entitlements
-insert into entitlement (id, name, display_name, description, business_unit, restricted, parent_application_id, is_deleted, created, updated)
-values (200, 'applier', 'Applic 8R applier', 'allows applying', 'IT', false, 101, false, current_timestamp(), current_timestamp()),
-       (201, 'user', 'Applic 8R user', 'standard user', 'IT', false, 101, false, current_timestamp(), current_timestamp()),
-       (202, 'submitter', 'Applic 8R submitter', 'submits Applic 8R applyings', 'IT', true, 101, false, current_timestamp(), current_timestamp()),
+insert into entitlement (id, name, display_name, description, restricted, parent_application_id, is_deleted, created, updated)
+values (200, 'applier', 'Applic 8R applier', 'allows applying', false, 101, false, current_timestamp(), current_timestamp()),
+       (201, 'user', 'Applic 8R user', 'standard user', false, 101, false, current_timestamp(), current_timestamp()),
+       (202, 'submitter', 'Applic 8R submitter', 'submits Applic 8R applyings', true, 101, false, current_timestamp(), current_timestamp()),
 
-       (210, 'stripper', 'Stripper', 'Removes measurements', 'IT', false, 110, false, current_timestamp(), current_timestamp()),
-       (211, 'metrician', 'Metrician', 'Measures Removals of measurements', 'IT', false, 110, false, current_timestamp(), current_timestamp()),
-       (212, 'admin', 'Administrator', 'Administers Removals of measurements', 'IT', true, 110, false, current_timestamp(), current_timestamp()),
+       (210, 'stripper', 'Stripper', 'Removes measurements', false, 110, false, current_timestamp(), current_timestamp()),
+       (211, 'metrician', 'Metrician', 'Measures Removals of measurements', false, 110, false, current_timestamp(), current_timestamp()),
+       (212, 'admin', 'Administrator', 'Administers Removals of measurements', true, 110, false, current_timestamp(), current_timestamp()),
 
-       (220, 'technician', 'Technician', 'TeCoder Techs', 'IT', false, 120, false, current_timestamp(), current_timestamp()),
-       (221, 'coder', 'Teh Coder', 'TeCoder Coder', 'IT', false, 120, false, current_timestamp(), current_timestamp()),
-       (222, 'readonly', 'Read Only', 'TeCoder Read Only access', 'IT', false, 120, false, current_timestamp(), current_timestamp()),
+       (220, 'technician', 'Technician', 'TeCoder Techs', false, 120, false, current_timestamp(), current_timestamp()),
+       (221, 'coder', 'Teh Coder', 'TeCoder Coder', false, 120, false, current_timestamp(), current_timestamp()),
+       (222, 'readonly', 'Read Only', 'TeCoder Read Only access', false, 120, false, current_timestamp(), current_timestamp()),
 
-       (230, 'flexer', 'Flexer', 'FlexRA Flexer', 'IT', false, 130, false, current_timestamp(), current_timestamp()),
-       (231, 'trammeler', 'Trammeler', 'FlexRA Trammeler', 'IT', false, 130, false, current_timestamp(), current_timestamp()),
-       (232, 'admin', 'Administrator', 'FlexRA Administrator', 'IT', true, 130, false, current_timestamp(), current_timestamp()),
+       (230, 'flexer', 'Flexer', 'FlexRA Flexer', false, 130, false, current_timestamp(), current_timestamp()),
+       (231, 'trammeler', 'Trammeler', 'FlexRA Trammeler', false, 130, false, current_timestamp(), current_timestamp()),
+       (232, 'admin', 'Administrator', 'FlexRA Administrator', true, 130, false, current_timestamp(), current_timestamp()),
 
-       (240, 'hyperbolist', 'Hyperbole User', 'Hyperbolic Advanced Users', 'IT', false, 140, false, current_timestamp(), current_timestamp()),
-       (241, 'tooler', 'Tooler', 'Hyperbolic Tooling', 'IT', false, 140, false, current_timestamp(), current_timestamp()),
-       (242, 'user', 'User', 'Hyperbolic Users', 'IT', false, 140, false, current_timestamp(), current_timestamp()),
+       (240, 'hyperbolist', 'Hyperbole User', 'Hyperbolic Advanced Users', false, 140, false, current_timestamp(), current_timestamp()),
+       (241, 'tooler', 'Tooler', 'Hyperbolic Tooling', false, 140, false, current_timestamp(), current_timestamp()),
+       (242, 'user', 'User', 'Hyperbolic Users', false, 140, false, current_timestamp(), current_timestamp()),
 
-       (250, 'vpx', 'VP Transferer', 'NetVPX Transferer', 'IT', false, 150, false, current_timestamp(), current_timestamp()),
-       (251, 'user', 'User', 'NetVPX User', 'IT', false, 150, false, current_timestamp(), current_timestamp()),
-       (252, 'admin', 'Administrator', 'NetVPX Administrator', 'IT', true, 150, false, current_timestamp(), current_timestamp());
+       (250, 'vpx', 'VP Transferer', 'NetVPX Transferer', false, 150, false, current_timestamp(), current_timestamp()),
+       (251, 'user', 'User', 'NetVPX User', false, 150, false, current_timestamp(), current_timestamp()),
+       (252, 'admin', 'Administrator', 'NetVPX Administrator', true, 150, false, current_timestamp(), current_timestamp());
 
 
 
