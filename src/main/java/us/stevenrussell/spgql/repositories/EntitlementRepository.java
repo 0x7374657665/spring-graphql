@@ -20,19 +20,14 @@ public class EntitlementRepository {
 
     private JdbcTemplate jdbc;
     private ApplicationRepository appRepo;
-    private AuthorizationService authSvc;
 
     @Autowired
-    public EntitlementRepository(JdbcTemplate jdbc, ApplicationRepository appRepo, AuthorizationService authSvc) {
+    public EntitlementRepository(JdbcTemplate jdbc, ApplicationRepository appRepo) {
         this.jdbc = jdbc;
         this.appRepo = appRepo;
-        this.authSvc = authSvc;
     }
 
     public Map<Long, List<Entitlement>> getEntitlementsForApplicationIds(Set<Long> applicationIds) {
-
-        List<String> roles = authSvc.getRoles();
-        boolean isAdmin = roles.contains("ROLE_ADMIN");
 
         String query = new StringBuilder()
                 .append("select * from entitlement e where e.parent_application_id  in ( ")
@@ -44,7 +39,6 @@ public class EntitlementRepository {
 
         Map<Long, List<Entitlement>> entsByAppId = entitlements
                 .stream()
-                .filter(ent -> !ent.isRestricted() || isAdmin)
                 .collect(
                         Collectors.groupingBy(
                                 ent -> ent.getParentApplicationId()
