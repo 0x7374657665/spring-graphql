@@ -36,4 +36,7 @@ type Role {
 type Query {
     application(name: String): Application
     applications: [Application]
+
+    entitlements: [Entitlement]
+    entitlementsByName(name: String!): [Entitlement]
 }

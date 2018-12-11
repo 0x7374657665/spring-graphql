@@ -1,7 +1,5 @@
 package us.stevenrussell.spgql.types;
 
-import java.time.LocalDate;
-
 public class Role {
 
     private long id;

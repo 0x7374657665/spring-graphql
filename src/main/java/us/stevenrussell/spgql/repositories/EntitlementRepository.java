@@ -37,4 +37,7 @@ public class EntitlementRepository {
         return entitlement;
     }
 
+    public List<Entitlement> getEntitlementsByName(String entitlementName) {
+        return jdbc.query("select * from entitlement e where e.name = ?", ENTITLEMENT_MAPPER, entitlementName);
+    }
 }
