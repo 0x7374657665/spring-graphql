@@ -1,14 +1,12 @@
 package us.stevenrussell.spgql.types;
 
-import java.time.LocalDate;
-
 public class Entitlement {
     private long id;
     private String name;
     private String displayName;
     private String description;
     private boolean restricted;
-    private long parentApplicationId;
+    private Application parentApplication;
     private boolean isDeleted;
     private String created;
     private String updated;
@@ -53,12 +51,12 @@ public class Entitlement {
         this.restricted = restricted;
     }
 
-    public long getParentApplicationId() {
-        return parentApplicationId;
+    public Application getParentApplication() {
+        return parentApplication;
     }
 
-    public void setParentApplicationId(long parentApplicationId) {
-        this.parentApplicationId = parentApplicationId;
+    public void setParentApplication(Application parentApplication) {
+        this.parentApplication = parentApplication;
     }
 
     public boolean isDeleted() {

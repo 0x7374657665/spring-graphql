@@ -1,3 +1,39 @@
+type Application {
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    provisionerRole: Role
+    isDeleted: Boolean
+    created: String
+    updated: String
+    entitlements: [Entitlement]
+}
+
+type Entitlement {
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    restricted: Boolean
+    parentApplication: Application
+    isDeleted: Boolean
+    created: String
+    updated: String
+}
+
+type Role {
+    id: ID!
+    name: String
+    displayName: String
+    description: String
+    isDeleted: Boolean
+    isRequestable: Boolean
+    created: String
+    updated: String
+}
+
 type Query {
-    helloWorld: String!
+    application(name: String): Application
+    applications: [Application]
 }
