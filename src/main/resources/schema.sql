@@ -37,3 +37,5 @@ alter table application
 
 alter table entitlement
   add foreign key (parent_application_id) references application(id);
+
+create sequence seq_id start with 1000

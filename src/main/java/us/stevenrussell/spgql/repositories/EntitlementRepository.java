@@ -3,6 +3,8 @@ package us.stevenrussell.spgql.repositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import us.stevenrussell.spgql.types.Application;
+import us.stevenrussell.spgql.types.CreateEntitlementInput;
 import us.stevenrussell.spgql.types.Entitlement;
 
 import java.util.Collections;
@@ -58,5 +60,25 @@ public class EntitlementRepository {
 
     public List<Entitlement> getEntitlementsByName(String entitlementName) {
         return jdbc.query("select * from entitlement e where e.name = ?", ENTITLEMENT_MAPPER, entitlementName);
+    }
+
+
+    public Entitlement createEntitlement(CreateEntitlementInput newEntitlementData) {
+        Application parentApp = appRepo.getApplicationByName(newEntitlementData.getParentAppName());
+        String query = "insert into entitlement (id, name, display_name, description, restricted, parent_application_id, is_deleted, created, updated) values (seq_id.nextval,?,?,?,?,?,false,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP());";
+        int updatedRows = jdbc.update(query,
+                newEntitlementData.getName(),
+                newEntitlementData.getDescription(),
+                newEntitlementData.getDescription(),
+                newEntitlementData.isRestricted(),
+                parentApp.getId()
+        );
+
+        Entitlement newEnt = null;
+        if (updatedRows == 1) {
+            newEnt = getEntitlement(parentApp.getName(), newEntitlementData.getName());
+        }
+
+        return newEnt;
     }
 }

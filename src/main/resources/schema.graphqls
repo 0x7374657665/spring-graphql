@@ -36,10 +36,22 @@ type Role {
     updated: MDYDate
 }
 
+input CreateEntitlementInput {
+    name: String!
+    displayName: String!
+    description: String!
+    parentAppName: String!
+    restricted: Boolean!
+}
+
 type Query {
     application(name: String): Application
     applications: [Application]
 
     entitlements: [Entitlement]
     entitlementsByName(name: String!): [Entitlement]
+}
+
+type Mutation {
+    createEntitlement(newEntitlement: CreateEntitlementInput!): Entitlement!
 }
