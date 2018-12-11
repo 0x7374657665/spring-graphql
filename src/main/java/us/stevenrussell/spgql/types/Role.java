@@ -1,5 +1,7 @@
 package us.stevenrussell.spgql.types;
 
+import java.time.LocalDate;
+
 public class Role {
 
     private long id;
@@ -8,8 +10,8 @@ public class Role {
     private String description;
     private boolean isDeleted;
     private boolean isRequestable;
-    private String created;
-    private String updated;
+    private LocalDate created;
+    private LocalDate updated;
 
     public long getId() {
         return id;
@@ -59,19 +61,19 @@ public class Role {
         isRequestable = requestable;
     }
 
-    public String getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
-    public String getUpdated() {
+    public LocalDate getUpdated() {
         return updated;
     }
 
-    public void setUpdated(String updated) {
+    public void setUpdated(LocalDate updated) {
         this.updated = updated;
     }
 }

@@ -1,3 +1,5 @@
+scalar MDYDate
+
 type Application {
     id: ID!
     name: String
@@ -5,8 +7,8 @@ type Application {
     description: String
     provisionerRole: Role
     isDeleted: Boolean
-    created: String
-    updated: String
+    created: MDYDate
+    updated: MDYDate
     entitlements: [Entitlement]
 }
 
@@ -18,8 +20,8 @@ type Entitlement {
     restricted: Boolean
     parentApplication: Application
     isDeleted: Boolean
-    created: String
-    updated: String
+    created: MDYDate
+    updated: MDYDate
 }
 
 type Role {
@@ -29,8 +31,8 @@ type Role {
     description: String
     isDeleted: Boolean
     isRequestable: Boolean
-    created: String
-    updated: String
+    created: MDYDate
+    updated: MDYDate
 }
 
 type Query {
