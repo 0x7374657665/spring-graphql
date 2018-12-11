@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Component
@@ -55,6 +56,15 @@ public class DataLoadingContextBuilder implements GraphQLContextBuilder {
                 DataLoader.newDataLoader(
                         (List<Long> applicationIds) -> CompletableFuture.supplyAsync(
                                 () -> roleRepo.getRolesForApplicationIds(applicationIds)
+                        )
+                )
+        );
+
+        dlRegistry.register(
+                "entitlementsByApplicationDataLoader",
+                DataLoader.newMappedDataLoader(
+                        (Set<Long> applicationIds) -> CompletableFuture.supplyAsync(
+                                () -> entitlementRepo.getEntitlementsForApplicationIds(applicationIds)
                         )
                 )
         );

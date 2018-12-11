@@ -19,6 +19,7 @@ type Entitlement {
     description: String
     restricted: Boolean
     parentApplication: Application
+    parentApplication: Int
     isDeleted: Boolean
     created: MDYDate
     updated: MDYDate

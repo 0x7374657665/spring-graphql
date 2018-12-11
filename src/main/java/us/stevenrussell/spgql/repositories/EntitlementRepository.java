@@ -5,7 +5,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import us.stevenrussell.spgql.types.Entitlement;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static us.stevenrussell.spgql.repositories.TypeMappers.ENTITLEMENT_MAPPER;
 
@@ -21,10 +25,25 @@ public class EntitlementRepository {
         this.appRepo = appRepo;
     }
 
-    public List<Entitlement> getEntitlementsForApp(String appName) {
-        String query = "select e.* from entitlement e, application a where e.parent_application_id = a.id and a.name = ?";
-        List<Entitlement> entitlements = jdbc.query(query, ENTITLEMENT_MAPPER, appName);
-        return entitlements;
+    public Map<Long, List<Entitlement>> getEntitlementsForApplicationIds(Set<Long> applicationIds) {
+
+        String query = new StringBuilder()
+                .append("select * from entitlement e where e.parent_application_id  in ( ")
+                .append(String.join(", ", Collections.nCopies(applicationIds.size(), "?")))
+                .append(" )")
+                .toString();
+
+        List<Entitlement> entitlements = jdbc.query(query, ENTITLEMENT_MAPPER, applicationIds.toArray());
+
+        Map<Long, List<Entitlement>> entsByAppId = entitlements
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                ent -> ent.getParentApplicationId()
+                        )
+                );
+
+        return entsByAppId;
     }
 
     public List<Entitlement> getAllEntitlements() {

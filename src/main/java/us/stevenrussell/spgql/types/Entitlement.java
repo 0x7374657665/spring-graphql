@@ -9,6 +9,7 @@ public class Entitlement {
     private String description;
     private boolean restricted;
     private Application parentApplication;
+    private long parentApplicationId;
     private boolean isDeleted;
     private LocalDate created;
     private LocalDate updated;
@@ -59,6 +60,14 @@ public class Entitlement {
 
     public void setParentApplication(Application parentApplication) {
         this.parentApplication = parentApplication;
+    }
+
+    public long getParentApplicationId() {
+        return parentApplicationId;
+    }
+
+    public void setParentApplicationId(long parentApplicationId) {
+        this.parentApplicationId = parentApplicationId;
     }
 
     public boolean isDeleted() {

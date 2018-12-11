@@ -39,9 +39,14 @@ public class ApplicationResolver implements GraphQLResolver<Application> {
         return roleCF;
     }
 
-    public List<Entitlement> getEntitlements(Application application) {
-        String query = "select * from entitlement e where e.parent_application_id = ?";
-        List<Entitlement> entitlements = jdbc.query(query, ENTITLEMENT_MAPPER, application.getId());
-        return entitlements;
+    public CompletableFuture<List<Entitlement>> getEntitlements(Application application, DataFetchingEnvironment dfe) {
+        DataLoader<Long, List<Entitlement>> entitlementsByApplicationDataLoader = ((GraphQLContext) dfe.getContext())
+                .getDataLoaderRegistry()
+                .get()
+                .getDataLoader("entitlementsByApplicationDataLoader");
+
+        CompletableFuture<List<Entitlement>> entitlementsCF = entitlementsByApplicationDataLoader.load(application.getId());
+
+        return entitlementsCF;
     }
 }
