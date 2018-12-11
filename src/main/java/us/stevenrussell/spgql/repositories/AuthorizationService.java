@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +24,11 @@ public class AuthorizationService {
             Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
             roles = authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         }
+
+        long threadId = Thread.currentThread().getId();
+
+        Logger.getLogger(AuthorizationService.class.getName())
+                .info("\u001B[31mthread: " + threadId + "\tuser: " + context.getAuthentication().getName() + "\troles: " + String.join(", ", roles) + "\u001B[0m");
 
         return roles;
     }

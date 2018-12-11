@@ -5,6 +5,7 @@ import graphql.servlet.GraphQLContextBuilder;
 import org.dataloader.DataLoader;
 import org.dataloader.DataLoaderRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import us.stevenrussell.spgql.repositories.EntitlementRepository;
 import us.stevenrussell.spgql.repositories.RoleRepository;
@@ -19,6 +20,10 @@ import java.util.concurrent.CompletableFuture;
 
 @Component
 public class DataLoadingContextBuilder implements GraphQLContextBuilder {
+
+    static {
+        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
+    }
 
     @Autowired
     private RoleRepository roleRepo;
